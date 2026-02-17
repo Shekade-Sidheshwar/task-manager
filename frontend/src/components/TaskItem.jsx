@@ -8,9 +8,7 @@ function MessageBox() {
       <button onClick={() => setMsg("Login successful!")}>
         Click Me
       </button>
-      <button onClick={() => setMsg(" Successful!")}>
-        Click Me
-      </button>
+
 
       <p>{msg}</p>
     </div>
