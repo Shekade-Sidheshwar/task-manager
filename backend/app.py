@@ -24,6 +24,16 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from database import db
 from routes.task_routes import task_bp
+<<<<<<< HEAD
+=======
+from routes.user_routes import user_bp
+from flask_jwt_extended import JWTManager  # <-- add this
+
+import sys
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+>>>>>>> 4b1620c (Change by Sidhesh)
 # Load environment variables
 load_dotenv()
 
@@ -36,18 +46,28 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_NAME = os.getenv("DB_NAME")
+SECRET_KEY = os.getenv("SECRET_KEY") or "super-secret-key"  # fallback
 
 # Configure Database
-app.config['SQLALCHEMY_DATABASE_URI'] = (
+app.config["SQLALCHEMY_DATABASE_URI"] = (
     f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 )
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# JWT Config
+app.config["JWT_SECRET_KEY"] = SECRET_KEY
 
 # Initialize DB
 db.init_app(app)
-app.register_blueprint(task_bp)
 
+# Initialize JWT
+jwt = JWTManager(app)  # <-- MUST add this
+
+# Register blueprints
+app.register_blueprint(task_bp)
+app.register_blueprint(user_bp, url_prefix="/api/users")
+
+# Create tables
 with app.app_context():
     db.create_all()
 

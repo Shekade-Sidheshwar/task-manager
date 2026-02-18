@@ -1,5 +1,6 @@
 from database import db
 
+
 class Task(db.Model):
     __tablename__ = "task"
 
@@ -11,6 +12,7 @@ class Task(db.Model):
     def __repr__(self):
         return f"<Task {self.title} - {self.status}>"
 
+<<<<<<< HEAD
 
 
     # def to_dict(self):
@@ -20,3 +22,5 @@ class Task(db.Model):
     #         "description": self.description,
     #         "status": self.status,
     #     }
+=======
+>>>>>>> 4b1620c (Change by Sidhesh)
