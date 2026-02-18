@@ -1,4 +1,8 @@
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3848e4d053a6ab35efcfa00dd1012c399bbd148a
 
 # Python
 __pycache__/
@@ -13,5 +17,9 @@ build/
 .vscode/
 .idea/
 .DS_Store
+<<<<<<< HEAD
 
 .env
+=======
+.env
+>>>>>>> 3848e4d053a6ab35efcfa00dd1012c399bbd148a

@@ -38,3 +38,19 @@ def get_completed_tasks_service():
 
     return result
 
+def update_task_service(task_id, data):
+
+    task = Task.query.get(task_id)
+
+    if not task:
+        return {"error": "Task not found"}, 404
+
+    task.title = data.get("title", task.title)
+    task.description = data.get("description", task.description)
+
+    db.session.commit()
+
+    return {
+        "message": "Task updated successfully",
+        "task": task.to_dict()
+    }, 200

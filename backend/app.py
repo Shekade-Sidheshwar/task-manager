@@ -24,7 +24,6 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from database import db
 from routes.task_routes import task_bp
-
 # Load environment variables
 load_dotenv()
 
