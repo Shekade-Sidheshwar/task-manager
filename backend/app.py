@@ -24,8 +24,6 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 from database import db
 from routes.task_routes import task_bp
-<<<<<<< HEAD
-=======
 from routes.user_routes import user_bp
 from flask_jwt_extended import JWTManager  # <-- add this
 
@@ -33,7 +31,6 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
->>>>>>> 4b1620c (Change by Sidhesh)
 # Load environment variables
 load_dotenv()
 
