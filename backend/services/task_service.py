@@ -20,3 +20,20 @@ def add_task_service(data):
         "message": "Task added successfully",
         "task": new_task.to_dict()
     }, 201
+
+def update_task_service(task_id, data):
+
+    task = Task.query.get(task_id)
+
+    if not task:
+        return {"error": "Task not found"}, 404
+
+    task.title = data.get("title", task.title)
+    task.description = data.get("description", task.description)
+
+    db.session.commit()
+
+    return {
+        "message": "Task updated successfully",
+        "task": task.to_dict()
+    }, 200
