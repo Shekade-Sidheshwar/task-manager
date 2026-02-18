@@ -11,3 +11,31 @@ def add_task():
     db.session.add(new_task)
     db.session.commit()
     return jsonify({"message": "Task added successfully"})
+
+#list items
+
+@task_bp.route("/tasks/completed", methods=["GET"])
+def get_completed_tasks():
+    try:
+        completed_tasks = Task.query.filter_by(status="Completed").all()
+
+        result = []
+        for t in completed_tasks:
+            result.append({
+                "id": t.id,
+                "title": t.title,
+                "description": t.description,
+                "status": t.status
+            })
+
+        return jsonify({
+            "success": True,
+            "data": result
+        }), 200
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "message": str(e)
+        }), 500
+
